@@ -34,6 +34,7 @@ export const createErrorPromise = (error) => {
     }
   });
 };
+
 //Funcion errores personalizados del servidor de base de datos
 export const createSimpleErrorPromise = (error) => {
   return new Promise((resolve, reject) => {

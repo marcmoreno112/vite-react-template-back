@@ -16,8 +16,4 @@ export const createUser = async (schema, user) => {
     console.log("}");
     return createSimpleErrorPromise(e.response.body);
   }
-
-  // return collection.save(user).catch(e => {
-  // 	return createSimpleErrorPromise(e.response.body);
-  // });
 };

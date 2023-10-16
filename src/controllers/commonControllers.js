@@ -1,4 +1,3 @@
-// const generalQueries = require('../services/generalQueriesArangoDb');
 import { createError, createErrorWithCode } from "../utils/errorManager.js";
 import { verifyToken } from "../utils/tokenAndCookie.js";
 import {

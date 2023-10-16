@@ -18,10 +18,11 @@ export const workerRouter = express.Router();
 
 workerRouter.post("/", addDataWorkers);
 
-workerRouter.get("/", getAllWorkersData);
+workerRouter.post("/getData", getAllWorkersData);
 
 workerRouter.get("/:id", getWorkerDataById);
 
-workerRouter.patch("/", updateWorker);
+workerRouter.post("/updateData", updateWorker);
 
-workerRouter.delete("/", removeWorker);
+// workerRouter.delete("/deleteData", removeWorker);
+workerRouter.post("/deleteData", removeWorker);

@@ -95,7 +95,7 @@ export const loginController = async (req, res) => {
   }
 };
 
-export const changePasswordController = async (req, res) => {
+export const updatePasswordController = async (req, res) => {
   try {
     const userData = req.body;
     const salt = await bcrypt.genSalt(10);
@@ -173,3 +173,27 @@ export const currentUserController = async (req, res) => {
     return res.status(process.env.CODE_API).json(e);
   }
 };
+
+export async function findUserByEmail(req, res) {
+  try {
+    let filter = req.body.filter;
+    Object.keys(filter).map((key) => {
+      if (filter[key] === undefined) {
+        delete filter[key];
+      }
+    });
+    let userData = await find(User, filter);
+    if (userData._result.length > 0) {
+      for (let i = 0; i < userData._result.length; i++) {
+        userData._result[i].password = "";
+      }
+    }
+    return res.send(userData);
+  } catch (e) {
+    if (e["code"] === undefined) {
+      e = createError(e.message);
+      saveLogMessage("error", JSON.stringify(e));
+    }
+    return res.status(+process.env.CODE_API).json(e);
+  }
+}
